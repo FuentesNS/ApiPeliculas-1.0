@@ -46,6 +46,7 @@ class ViewController: UIViewController {
                     let json = ["request_token": userToken.request_token]
                     
                     //create the url with NSURL
+
                     let url = URL(string: "https://api.themoviedb.org/3/authentication/session/new?api_key=583dbd688a1811cd5bc8fad24a69b65f")!
                     
                     //create the session object
@@ -86,36 +87,46 @@ class ViewController: UIViewController {
                                 //completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                                 return
                             }
-                            
-                            
                             print(json)
                             
-                            result.Correct = true
-                            result.Object = json
-                            
-                            
-                            
                             if responseHttp.statusCode == 200{
-                                print("Se puede iniciar session")
-                                DispatchQueue.main.async {
-                                    self.performSegue(withIdentifier: "Login", sender: nil)
-                                      }
+                                print("Se puede iniciar sesion")
+                                result.Correct = true
+                                do{
+                                    let tasks = try JSONDecoder().decode(SessionUser.self, from: data)
+                                    
+                                    
+                                    
+                                    result.Object = tasks
+                                    
+                                    result.Correct = true
+                                    
+                                    print(result.Object)
+                                    self.SendIdSession()
+                                    
+                                    //ResultCompletionHandler(result, nil)
+                                    
+                                }catch let parseErr{
+                                    print(error)
+                                    print("JSON Parsing Error", parseErr)
+                                    //ResultCompletionHandler(nil, parseErr)
+                                }
                             } else if responseHttp.statusCode == 400 {
                                 print("No se puede realizar token")
                                 //ResultCompletionHandler(result, nil)
                             }
-                            //completion(json, nil)
                         } catch let error {
                             print(error.localizedDescription)
-                            //completion(nil, error)
+                            //ResultCompletionHandler(nil, error)
                         }
                     })
+                    
                     task.resume()
                 }
             }
         })
         
-        SendIdSession()
+        
        
     }
     
@@ -134,8 +145,8 @@ class ViewController: UIViewController {
                 //                print("user first name is : \(result.Correct!)")
                 
                 if result.Correct!{
-                    let user = result.Object as! UserProfile
-                    print(user.id)
+                    let user = result.Object as! SessionUser
+                    print(user.session_id)
                     
                 }
             }
@@ -291,10 +302,6 @@ class ViewController: UIViewController {
 
         task.resume()
     }
-    
-    
-   
-    
 }
 
 

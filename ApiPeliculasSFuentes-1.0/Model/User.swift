@@ -12,6 +12,10 @@ struct User{
     var Password: String
 }
 
+struct SessionUser: Codable{
+    let success: Int
+    let session_id: Int
+  }
 
 // MARK: - Welcome
 struct UserProfile: Codable {
