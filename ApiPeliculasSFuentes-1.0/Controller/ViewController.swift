@@ -27,6 +27,29 @@ class ViewController: UIViewController {
     
     @IBAction func SingInButton(_ sender: UIButton) {
         
+        GetIdSessionWithToken(ResultCompletionHandler: {result, error in
+            if let result = result {
+                if result.Correct!{
+                    let userProfile = result.Object as! SessionUser
+                    
+                    let SessionId =  userProfile.session_id
+                    print("Session_Id: \(SessionId)")
+                    print("Ya se tiene el session id")
+
+                    UserDefaults.standard.set(SessionId, forKey:"userId");
+                    UserDefaults.standard.synchronize();
+                    
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "Login", sender: nil)
+                    }
+                }
+            }
+        })
+    }
+    
+    
+    
+    func GetIdSessionWithToken(ResultCompletionHandler: @escaping (Result?, Error?) -> Void){
         let user: User
         
         user = User(Email: EmailInput.text!, Password: PasswordInput.text!)
@@ -91,20 +114,17 @@ class ViewController: UIViewController {
                             
                             if responseHttp.statusCode == 200{
                                 print("Se puede iniciar sesion")
-                                result.Correct = true
-                                do{
+                               do{
                                     let tasks = try JSONDecoder().decode(SessionUser.self, from: data)
                                     
-                                    
-                                    
+                                    print(tasks)
+        
                                     result.Object = tasks
                                     
                                     result.Correct = true
                                     
-                                    print(result.Object)
-                                    self.SendIdSession()
-                                    
-                                    //ResultCompletionHandler(result, nil)
+                                    //print(result.Object as Any)
+                                    ResultCompletionHandler(result, nil)
                                     
                                 }catch let parseErr{
                                     print(error)
@@ -122,32 +142,6 @@ class ViewController: UIViewController {
                     })
                     
                     task.resume()
-                }
-            }
-        })
-        
-        
-       
-    }
-    
-    
-    func SendIdSession(){
-        let user: User
-        
-        user = User(Email: EmailInput.text!, Password: PasswordInput.text!)
-        
-        //print(user)
-        
-        //ValidateToken(user.Email, user.Password)
-        ValidateToken(user.Email, user.Password, ResultCompletionHandler: {result, error in
-            if let result = result {
-                //                print("user first name is : \(result.Object!)")
-                //                print("user first name is : \(result.Correct!)")
-                
-                if result.Correct!{
-                    let user = result.Object as! SessionUser
-                    print(user.session_id)
-                    
                 }
             }
         })
@@ -226,7 +220,7 @@ class ViewController: UIViewController {
                                     ResultCompletionHandler(result, nil)
                                     
                                 }catch let parseErr{
-                                    print(error)
+                                    print(error as Any)
                                     print("JSON Parsing Error", parseErr)
                                     ResultCompletionHandler(nil, parseErr)
                                 }
@@ -265,9 +259,6 @@ class ViewController: UIViewController {
                 do{
                     let tasks = try JSONDecoder().decode(Token.self, from: data)
                     
-//                    print(tasks.request_token)
-//                    print(tasks.expires_at)
-//                    print(tasks.success)
                     print(tasks)
                     
                     result.Object = tasks
@@ -277,7 +268,7 @@ class ViewController: UIViewController {
                     ResultCompletionHandler(result, nil)
                     
                 }catch let parseErr{
-                    print(error)
+                    print(error as Any)
                     print("JSON Parsing Error", parseErr)
                     ResultCompletionHandler(nil, parseErr)
                 }

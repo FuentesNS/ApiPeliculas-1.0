@@ -13,8 +13,8 @@ struct User{
 }
 
 struct SessionUser: Codable{
-    let success: Int
-    let session_id: Int
+    let session_id: String
+    let success: Bool
   }
 
 // MARK: - Welcome

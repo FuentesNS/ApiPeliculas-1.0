@@ -12,9 +12,7 @@ class BaseViewController: UIViewController{
     @IBOutlet weak var tabbar: UITabBar!
     @IBOutlet weak var MoviesCollectionView: UICollectionView!
     
-    var IdSession: Int = 0
-
-    
+    let userId = UserDefaults.standard.string(forKey: "userId")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,50 +21,59 @@ class BaseViewController: UIViewController{
         MoviesCollectionView.delegate = self
         self.MoviesCollectionView.register(UINib(nibName: "MoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MoviesViewCell")
         
-        // Do any additional setup after loading the view.
         
-        func GetAllFavoriteMovie(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
-            
-            let result = Result()
-
-//            var result1: [T.Type: Any] = [:]
-            //var DataUser = [String: String]()
-            
-            
-            let url = URL(string:"https://api.themoviedb.org/3/account?api_key=583dbd688a1811cd5bc8fad24a69b65f&session_id=\(IdSession)")
-            
-            URLSession.shared.dataTask(with: url!) { data, response, error in
-                if let _ = error {
-                    print("Error")
-                }
-                
-                if let data = data,
-                   let httpResponse = response as? HTTPURLResponse,
-                   httpResponse.statusCode == 200 {
-                    
-                    do{
-                        let tasks = try JSONDecoder().decode(UserProfile.self, from: data)
-                        
-    //                    print(tasks.request_token)
-    //                    print(tasks.expires_at)
-    //                    print(tasks.success)
-                        print(tasks)
-                        
-                        result.Object = tasks
-                        
-                        result.Correct = true
-                        
-                        ResultCompletionHandler(result, nil)
-                        
-                    }catch let parseErr{
-                        print(error)
-                        print("JSON Parsing Error", parseErr)
-                        ResultCompletionHandler(nil, parseErr)
-                    }
-                }
-            }.resume()
-        }
+        //print("User session id in base controller \(String(describing: userId!))")
+        
+        //        GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
+        //            if let result = result {
+        //                if result.Correct!{
+        //                    let userProfile = result.Object as! UserProfile
+        //
+        //                    let json = userProfile.id
+        //                    print(json)
+        //                }
+        //            }
+        //        })
+        
     }
+    
+    //    func GetAllFavoriteMovie(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
+    //
+    //        let result = Result()
+    //
+    //
+    //        let url = URL(string:"https://\(userId!)")
+    //
+    //        URLSession.shared.dataTask(with: url!) { data, response, error in
+    //            if let _ = error {
+    //                print("Error")
+    //            }
+    //
+    //            if let data = data,
+    //               let httpResponse = response as? HTTPURLResponse,
+    //               httpResponse.statusCode == 200 {
+    //
+    //                do{
+    //                    let tasks = try JSONDecoder().decode(UserProfile.self, from: data)
+    //
+    //                    print(tasks)
+    //
+    //                    result.Object = tasks
+    //
+    //                    result.Correct = true
+    //
+    //                    ResultCompletionHandler(result, nil)
+    //
+    //                }catch let parseErr{
+    //                    print(error)
+    //                    print("JSON Parsing Error", parseErr)
+    //                    ResultCompletionHandler(nil, parseErr)
+    //                }
+    //            }
+    //        }.resume()
+    //    }
+    
+    
 }
     
 
