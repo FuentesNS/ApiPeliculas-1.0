@@ -19,6 +19,7 @@ class BaseViewController: UIViewController{
         
         tabbar.delegate = self
         MoviesCollectionView.delegate = self
+        MoviesCollectionView.dataSource = self
         self.MoviesCollectionView.register(UINib(nibName: "MoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MoviesViewCell")
         
         

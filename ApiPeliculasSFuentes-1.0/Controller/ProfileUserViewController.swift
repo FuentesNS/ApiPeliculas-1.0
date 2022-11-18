@@ -28,19 +28,18 @@ class ProfileUserViewController: UIViewController {
                     let json = userProfile.id
                     print(json)
                     
-                    
-                    //let urlImage = URL(string: "https://api.themoviedb.org\(userProfile.avatar.tmdb.avatar_path)")!
-                    
                     DispatchQueue.main.async {
-                        if let url = URL( string:"https://api.themoviedb.org\(userProfile.avatar.tmdb.avatar_path)")
+                        if let url = URL( string:"https://image.tmdb.org/t/p/w64_and_h64_face/\(userProfile.avatar.tmdb.avatar_path)")
                         {
                             print(url)
                             DispatchQueue.global().async {
                                 
                                 if let data = try? Data( contentsOf:url)
                                 {
-                                    self.ImageProfile.image = UIImage( data:data)
-                                    //self.UserName.text = userProfile.username
+                                    DispatchQueue.main.async {
+                                        self.ImageProfile.image = UIImage( data:data)
+                                        self.UserName.text = userProfile.username
+                                    }
                                 }
                             }
                             
@@ -52,16 +51,16 @@ class ProfileUserViewController: UIViewController {
         
         
         
-//        GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
-//            if let result = result {
-//                if result.Correct!{
-//                    let userProfile = result.Object as! DataMovie
-//
-//                    let json = userProfile.results
-//                    print(json)
-//                }
-//            }
-//        })
+        GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
+            if let result = result {
+                if result.Correct!{
+                    let userProfile = result.Object as! DataMovie
+
+                    let json = userProfile.results
+                    print(json)
+                }
+            }
+        })
     }
     
     
