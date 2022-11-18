@@ -12,13 +12,23 @@ class ProfileUserViewController: UIViewController {
     @IBOutlet weak var ImageProfile: UIImageView!
     @IBOutlet weak var UserName: UILabel!
     
+    @IBOutlet weak var FavoriteMovieCollectionView: UICollectionView!
+    
+    
+    var favoritesMovies: DataMovie?
+    
     let sessionId = UserDefaults.standard.string(forKey: "SessionId")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         print("User session id in base controller \(String(describing: sessionId!))")
+        
+        FavoriteMovieCollectionView.delegate = self
+        FavoriteMovieCollectionView.dataSource = self
+        self.FavoriteMovieCollectionView.register(UINib(nibName: "MoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MoviesViewCell")
+        
         
         GetDataProfileUser(ResultCompletionHandler: {result, error in
             if let result = result {
@@ -26,12 +36,13 @@ class ProfileUserViewController: UIViewController {
                     let userProfile = result.Object as! UserProfile
                     
                     let json = userProfile.id
-                    print(json)
+                    print("photo del usuario \(userProfile.avatar.tmdb.avatar_path)")
+                    //print(json)
                     
                     DispatchQueue.main.async {
-                        if let url = URL( string:"https://image.tmdb.org/t/p/w64_and_h64_face/\(userProfile.avatar.tmdb.avatar_path)")
+                        if let url = URL( string:"https://image.tmdb.org/t/p/w64_and_h64_face\(userProfile.avatar.tmdb.avatar_path)")
                         {
-                            print(url)
+                            print(userProfile.avatar.tmdb.avatar_path)
                             DispatchQueue.global().async {
                                 
                                 if let data = try? Data( contentsOf:url)
@@ -50,17 +61,29 @@ class ProfileUserViewController: UIViewController {
         })
         
         
-        
-        GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
-            if let result = result {
-                if result.Correct!{
-                    let userProfile = result.Object as! DataMovie
-
-                    let json = userProfile.results
-                    print(json)
+    LoadData()
+    
+    }
+    
+    func LoadData(){
+        do{
+            GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
+                if let result = result {
+                    if result.Correct!{
+                        self.favoritesMovies = result.Object as! DataMovie
+                        
+                        let json = self.favoritesMovies
+                        print(json)
+                        
+                        DispatchQueue.main.async {
+                            self.FavoriteMovieCollectionView.reloadData()
+                        }
+                    }
                 }
-            }
-        })
+            })
+        }catch{
+            print("Ocurrio un error")
+        }
     }
     
     
@@ -118,7 +141,6 @@ class ProfileUserViewController: UIViewController {
             
             let result = Result()
     
-    
             let url = URL(string:"https://api.themoviedb.org/3/account/\(userId)/favorite/movies?api_key=583dbd688a1811cd5bc8fad24a69b65f&session_id=\(sessionId!)")
     
             URLSession.shared.dataTask(with: url!) { data, response, error in
@@ -150,5 +172,51 @@ class ProfileUserViewController: UIViewController {
             }.resume()
         }
     
+}
+
+extension ProfileUserViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favoritesMovies?.results.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesViewCell", for: indexPath) as! MoviesCollectionViewCell
+        
+        let favoriteMovie = self.favoritesMovies?.results[indexPath.row]
+
+        cell.NameMovie.text = favoriteMovie?.original_title
+        //cell.DateMovie.text = favoriteMovie?.
+        //let populateMovie = (favoriteMovie!.vote_average * 10).rounded()/10
+        cell.CalfMovie.text = String(describing:("★\((favoriteMovie!.vote_average * 10).rounded()/10)"))
+        cell.DescriptionMovie.text = favoriteMovie?.overview
+        print(favoriteMovie!.poster_path)
+        DispatchQueue.main.async {
+            print(favoriteMovie!.vote_average)
+//            print(populateMovie)
+            if let url = URL(string:"https://image.tmdb.org/t/p/w1280\(String(describing:favoriteMovie!.poster_path))")
+            {
+                print(url)
+                DispatchQueue.global().async {
+
+                    if let data = try? Data( contentsOf:url)
+                    {
+                        DispatchQueue.main.async {
+                            cell.PhotoMovie.image = UIImage( data:data)
+                        }
+                    }
+                }
+
+            }
+        }
+        cell.backgroundColor = .green
+        
+        return cell
+        
+    }
 }

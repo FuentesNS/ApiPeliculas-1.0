@@ -25,14 +25,6 @@ struct UserProfile: Codable {
     let include_adult: Bool
     let username: String
 
-//    enum CodingKeys: String, CodingKey {
-//        case avatar, id
-//        case iso639_1 = "iso_639_1"
-//        case iso3166_1 = "iso_3166_1"
-//        case name
-//        case includeAdult = "include_adult"
-//        case username
-//    }
 }
 
 // MARK: - Avatar

@@ -94,11 +94,11 @@ extension BaseViewController: UITabBarDelegate {
             print("two")
 
         } else if(item.tag == 3) {
-            // Code for item 2
+            // Code for item 3
             print("three")
 
         }else if(item.tag == 4) {
-            // Code for item 2
+            // Code for item 4
             print("four")
 
         }
