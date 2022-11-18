@@ -223,7 +223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
                                     <constraint firstItem="Xqw-8O-Bwg" firstAttribute="top" secondItem="RWm-86-ddE" secondAttribute="top" constant="30" id="FvX-wo-l2s"/>
                                     <constraint firstItem="zlu-AO-grH" firstAttribute="centerX" secondItem="RWm-86-ddE" secondAttribute="centerX" id="Mhi-4Z-wLR"/>
@@ -278,6 +278,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Sny-xG-1xa"/>
+                    <connections>
+                        <outlet property="ImageProfile" destination="Xqw-8O-Bwg" id="fii-VE-WOA"/>
+                        <outlet property="UserName" destination="zlu-AO-grH" id="Tur-h4-3iN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sv7-ZX-T6z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

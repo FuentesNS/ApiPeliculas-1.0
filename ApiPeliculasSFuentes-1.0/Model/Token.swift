@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Data: Codable{
+struct DataToken: Codable{
     let tokenApi: Token
 }
 

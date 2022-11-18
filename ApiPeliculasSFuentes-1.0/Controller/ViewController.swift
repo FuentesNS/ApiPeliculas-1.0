@@ -36,7 +36,7 @@ class ViewController: UIViewController {
                     print("Session_Id: \(SessionId)")
                     print("Ya se tiene el session id")
 
-                    UserDefaults.standard.set(SessionId, forKey:"userId");
+                    UserDefaults.standard.set(SessionId, forKey:"SessionId");
                     UserDefaults.standard.synchronize();
                     
                     DispatchQueue.main.async {
