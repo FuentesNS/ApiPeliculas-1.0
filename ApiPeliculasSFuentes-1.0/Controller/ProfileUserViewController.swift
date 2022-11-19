@@ -33,7 +33,7 @@ class ProfileUserViewController: UIViewController {
         GetDataProfileUser(ResultCompletionHandler: {result, error in
             if let result = result {
                 if result.Correct!{
-                    let userProfile = result.Object as! UserProfile
+                    let userProfile = result.Object as! ProfileUser
                     
                     let json = userProfile.id
                     print("photo del usuario \(userProfile.avatar.tmdb.avatar_path)")
@@ -93,7 +93,6 @@ class ProfileUserViewController: UIViewController {
 
         
         let url = URL(string:"https://api.themoviedb.org/3/account?api_key=583dbd688a1811cd5bc8fad24a69b65f&session_id=\(sessionId!)")
-        
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if let _ = error {
                 print("Error")
@@ -104,15 +103,14 @@ class ProfileUserViewController: UIViewController {
                httpResponse.statusCode == 200 {
                 
                 do{
-                    let tasks = try JSONDecoder().decode(UserProfile.self, from: data)
-                    
-                    print(tasks)
-                    
+                    var json = try? JSONSerialization.jsonObject(with: data)
+                    print(json)
+                    let tasks = try JSONDecoder().decode(ProfileUser.self, from: data)
                     result.Object = tasks
                     
                     result.Correct = true
                     
-                    let userProfile = result.Object as! UserProfile
+                    let userProfile = result.Object as! ProfileUser
                     
                     let UserId = userProfile.id
                     print("Id de usuario \(UserId)")

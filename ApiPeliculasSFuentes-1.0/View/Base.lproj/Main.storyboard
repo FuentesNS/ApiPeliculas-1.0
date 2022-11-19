@@ -212,19 +212,10 @@
                                             <constraint firstAttribute="width" constant="100" id="GRV-HD-5hB"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlu-AO-grH">
-                                        <rect key="frame" x="179" y="145" width="0.0" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlu-AO-grH">
+                                        <rect key="frame" x="0.0" y="145" width="358" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="PJf-fu-VCq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPN-td-GSk">
-                                        <rect key="frame" x="19.999999999999996" y="30" width="48.666666666666657" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="WD2-V2-K3v"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -233,11 +224,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
+                                    <constraint firstItem="zlu-AO-grH" firstAttribute="leading" secondItem="RWm-86-ddE" secondAttribute="leading" id="8L4-in-hVD"/>
                                     <constraint firstItem="Xqw-8O-Bwg" firstAttribute="top" secondItem="RWm-86-ddE" secondAttribute="top" constant="30" id="FvX-wo-l2s"/>
                                     <constraint firstItem="zlu-AO-grH" firstAttribute="centerX" secondItem="RWm-86-ddE" secondAttribute="centerX" id="Mhi-4Z-wLR"/>
-                                    <constraint firstItem="RPN-td-GSk" firstAttribute="top" secondItem="RWm-86-ddE" secondAttribute="top" constant="30" id="bBv-Bj-cFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="zlu-AO-grH" secondAttribute="trailing" id="fQ4-qe-w5u"/>
                                     <constraint firstAttribute="height" constant="200" id="goO-MK-KbJ"/>
-                                    <constraint firstItem="RPN-td-GSk" firstAttribute="leading" secondItem="RWm-86-ddE" secondAttribute="leading" constant="20" id="ka7-GO-3hg"/>
                                     <constraint firstItem="zlu-AO-grH" firstAttribute="top" secondItem="Xqw-8O-Bwg" secondAttribute="bottom" constant="15" id="qIv-9j-vFo"/>
                                     <constraint firstItem="Xqw-8O-Bwg" firstAttribute="centerX" secondItem="RWm-86-ddE" secondAttribute="centerX" id="tQe-4U-CBf"/>
                                 </constraints>

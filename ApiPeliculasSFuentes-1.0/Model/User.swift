@@ -17,8 +17,8 @@ struct SessionUser: Codable{
     let success: Bool
   }
 
-// MARK: - Welcome
-struct UserProfile: Codable {
+// MARK: - UserProfile
+struct ProfileUser: Codable {
     let avatar: Avatar
     let id: Int
     let iso_639_1, iso_3166_1, name: String
@@ -35,14 +35,11 @@ struct Avatar: Codable {
 
 // MARK: - Gravatar
 struct Gravatar: Codable {
-    let hash: Double
+    let hash: String
 }
 
 // MARK: - Tmdb
 struct Tmdb: Codable {
     let avatar_path: String
 
-//    enum CodingKeys: String, CodingKey {
-//        case avatarPath = "avatar_path"
-//    }
 }
