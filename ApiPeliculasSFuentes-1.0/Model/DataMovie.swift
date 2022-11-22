@@ -10,13 +10,13 @@ import Foundation
 // MARK: - Welcome
 struct DataMovie: Codable {
     let page: Int
-    let results: [ResultFavoriteMovie]
+    let results: [ResultDataMovie]
     let total_pages, total_results: Int
 
 }
 
 // MARK: - Result
-struct ResultFavoriteMovie: Codable {
+struct ResultDataMovie: Codable {
     let adult: Bool
     let backdrop_path: String
     let genre_ids: [Int]
@@ -28,5 +28,11 @@ struct ResultFavoriteMovie: Codable {
     let vote_average: Double
     let vote_count: Int
 
+}
+
+struct FavoriteMovie{
+    let mediaType: String
+    let mediaID: Int
+    let favorite: Bool
 }
 

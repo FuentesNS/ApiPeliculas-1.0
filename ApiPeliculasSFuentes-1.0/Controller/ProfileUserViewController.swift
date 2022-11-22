@@ -50,6 +50,9 @@ class ProfileUserViewController: UIViewController {
                                     DispatchQueue.main.async {
                                         self.ImageProfile.image = UIImage( data:data)
                                         self.UserName.text = userProfile.username
+                                        
+                                        UserDefaults.standard.set(userProfile.id, forKey:"UserId");
+                                        UserDefaults.standard.synchronize();
                                     }
                                 }
                             }
@@ -70,10 +73,10 @@ class ProfileUserViewController: UIViewController {
             GetAllFavoriteMovie(ResultCompletionHandler: {result, error in
                 if let result = result {
                     if result.Correct!{
-                        self.favoritesMovies = result.Object as! DataMovie
+                        self.favoritesMovies = result.Object as? DataMovie
                         
                         let json = self.favoritesMovies
-                        print(json)
+                        print(json as Any)
                         
                         DispatchQueue.main.async {
                             self.FavoriteMovieCollectionView.reloadData()

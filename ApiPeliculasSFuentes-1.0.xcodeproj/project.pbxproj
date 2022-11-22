@@ -17,7 +17,7 @@
 		F781C83F292547C70083A647 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C83E292547C70083A647 /* Result.swift */; };
 		F781C841292547FA0083A647 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C840292547FA0083A647 /* Token.swift */; };
 		F781C8432925480F0083A647 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C8422925480F0083A647 /* User.swift */; };
-		F781C845292548210083A647 /* FavoriteMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C844292548210083A647 /* FavoriteMovie.swift */; };
+		F781C845292548210083A647 /* DataMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C844292548210083A647 /* DataMovie.swift */; };
 		F781C84929254B870083A647 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C84829254B870083A647 /* BaseViewController.swift */; };
 		F781C84C292560940083A647 /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C84A292560940083A647 /* MoviesCollectionViewCell.swift */; };
 		F781C84D292560940083A647 /* MoviesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F781C84B292560940083A647 /* MoviesCollectionViewCell.xib */; };
@@ -37,7 +37,7 @@
 		F781C83E292547C70083A647 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F781C840292547FA0083A647 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F781C8422925480F0083A647 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F781C844292548210083A647 /* FavoriteMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovie.swift; sourceTree = "<group>"; };
+		F781C844292548210083A647 /* DataMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMovie.swift; sourceTree = "<group>"; };
 		F781C84829254B870083A647 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F781C84A292560940083A647 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		F781C84B292560940083A647 /* MoviesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				F781C83E292547C70083A647 /* Result.swift */,
 				F781C840292547FA0083A647 /* Token.swift */,
 				F781C8422925480F0083A647 /* User.swift */,
-				F781C844292548210083A647 /* FavoriteMovie.swift */,
+				F781C844292548210083A647 /* DataMovie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 				F781C823292547010083A647 /* AppDelegate.swift in Sources */,
 				F781C84929254B870083A647 /* BaseViewController.swift in Sources */,
 				F781C825292547010083A647 /* SceneDelegate.swift in Sources */,
-				F781C845292548210083A647 /* FavoriteMovie.swift in Sources */,
+				F781C845292548210083A647 /* DataMovie.swift in Sources */,
 				F781C8432925480F0083A647 /* User.swift in Sources */,
 				F781C84C292560940083A647 /* MoviesCollectionViewCell.swift in Sources */,
 			);
@@ -347,6 +347,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCAXYYK485;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ApiPeliculasSFuentes-1.0/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +355,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,6 +376,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCAXYYK485;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ApiPeliculasSFuentes-1.0/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -381,6 +384,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

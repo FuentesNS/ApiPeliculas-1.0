@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="922" y="4"/>
         </scene>
-        <!--Base View Controller-->
+        <!--Movies-->
         <scene sceneID="PoN-kJ-DdK">
             <objects>
                 <viewController id="LBj-PQ-06v" customClass="BaseViewController" customModule="ApiPeliculasSFuentes_1_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -137,47 +137,52 @@
                                     <constraint firstAttribute="height" constant="40" id="rgM-78-QXo"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem tag="1" title="One" id="AxW-Gy-Zfr"/>
-                                    <tabBarItem tag="2" title="Two" id="leq-5m-U1X"/>
-                                    <tabBarItem tag="3" title="Three" id="KWi-hk-2b7"/>
-                                    <tabBarItem tag="4" title="Four" id="wpW-RW-rbH"/>
+                                    <tabBarItem tag="1" title="Popular" id="AxW-Gy-Zfr">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    </tabBarItem>
+                                    <tabBarItem tag="2" title="Now Playin" id="leq-5m-U1X"/>
+                                    <tabBarItem tag="3" title="Upcoming" id="KWi-hk-2b7"/>
+                                    <tabBarItem tag="4" title="Top Rated" id="wpW-RW-rbH"/>
                                 </items>
                             </tabBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-cq-a35">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2d-5F-HvL" userLabel="ViewMovies">
                                 <rect key="frame" x="16" y="131" width="358" height="679"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gXs-5O-qTd">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tys-Za-nWs">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="U9K-eg-Oeo">
+                                        <rect key="frame" x="0.0" y="20" width="358" height="679"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="R89-dQ-flW">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                        </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kvv-gw-yw5">
+                                            <size key="itemSize" width="160" height="400"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstItem="U9K-eg-Oeo" firstAttribute="top" secondItem="e2d-5F-HvL" secondAttribute="top" id="4hK-Ij-J50"/>
+                                    <constraint firstAttribute="bottom" secondItem="U9K-eg-Oeo" secondAttribute="bottom" id="Ysa-e7-gfI"/>
+                                    <constraint firstItem="U9K-eg-Oeo" firstAttribute="leading" secondItem="e2d-5F-HvL" secondAttribute="leading" id="dUn-Ij-vnk"/>
+                                    <constraint firstAttribute="trailing" secondItem="U9K-eg-Oeo" secondAttribute="trailing" id="jTJ-g5-UMD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gdl-cY-PmX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CtA-HF-FiK" firstAttribute="top" secondItem="gdl-cY-PmX" secondAttribute="top" id="4SI-lv-C3o"/>
-                            <constraint firstItem="ZOr-cq-a35" firstAttribute="top" secondItem="CtA-HF-FiK" secondAttribute="bottom" id="820-1V-ya1"/>
-                            <constraint firstItem="gdl-cY-PmX" firstAttribute="bottom" secondItem="ZOr-cq-a35" secondAttribute="bottom" id="Fg5-MX-ip4"/>
                             <constraint firstItem="CtA-HF-FiK" firstAttribute="leading" secondItem="gdl-cY-PmX" secondAttribute="leading" id="NK5-xC-JHZ"/>
+                            <constraint firstItem="e2d-5F-HvL" firstAttribute="top" secondItem="CtA-HF-FiK" secondAttribute="bottom" id="OJh-9a-TXI"/>
                             <constraint firstItem="CtA-HF-FiK" firstAttribute="trailing" secondItem="gdl-cY-PmX" secondAttribute="trailing" id="Qdc-YS-5jQ"/>
-                            <constraint firstItem="ZOr-cq-a35" firstAttribute="leading" secondItem="koZ-b4-3ci" secondAttribute="leadingMargin" id="nlA-Bn-WDR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZOr-cq-a35" secondAttribute="trailing" id="snW-pk-g2g"/>
+                            <constraint firstItem="gdl-cY-PmX" firstAttribute="bottom" secondItem="e2d-5F-HvL" secondAttribute="bottom" id="agn-wp-jvB"/>
+                            <constraint firstItem="e2d-5F-HvL" firstAttribute="leading" secondItem="koZ-b4-3ci" secondAttribute="leadingMargin" id="u7W-hL-ktk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e2d-5F-HvL" secondAttribute="trailing" id="vw5-gR-RT9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0ox-XN-yMV">
+                    <navigationItem key="navigationItem" title="Movies" id="0ox-XN-yMV">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="BtZ-G8-Fpc"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="person" catalog="system" id="06i-ky-THJ">
                             <connections>
@@ -186,13 +191,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="MoviesCollectionView" destination="ZOr-cq-a35" id="gGh-PD-p0f"/>
+                        <outlet property="MoviesCollectionView" destination="U9K-eg-Oeo" id="S0L-Xq-oW5"/>
                         <outlet property="tabbar" destination="CtA-HF-FiK" id="BRd-ww-9KU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2v-Hb-tCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="4"/>
+            <point key="canvasLocation" x="1750.7692307692307" y="3.5545023696682461"/>
         </scene>
         <!--Profile User View Controller-->
         <scene sceneID="KFd-Cf-D8b">
@@ -289,14 +294,11 @@
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="play.rectangle.on.rectangle" catalog="system" width="128" height="98"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
