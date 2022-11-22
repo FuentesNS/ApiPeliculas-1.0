@@ -17,37 +17,42 @@ class BaseViewController: UIViewController{
     @IBOutlet weak var tabbar: UITabBar!
     @IBOutlet weak var MoviesCollectionView: UICollectionView!
     
-    var popularMovies: DataMovie?
+    var Movies: DataMovie?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print("Este es el Id de la cuenta \(String(describing: userId!))")
+        print("Este es el Id de la session \(String(describing: sessionId!))")
+        
         tabbar.delegate = self
 //        self.tabbar.items![1].present = true
         self.tabbar.tag = 1
-        
         self.tabbar.selectedItem = tabbar.items?.first
+        
+        
         
         MoviesCollectionView.delegate = self
         MoviesCollectionView.dataSource = self
         self.MoviesCollectionView.register(UINib(nibName: "MoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MoviesViewCell")
         
-        LoadData()
-        
+        LoadPopularMovies()
+        LoadNowPlayingMovies()
+        LoadUpcomingMovies()
+        LoadTopRatedMovies()
 
-        print("Este es el Id de la cuenta \(String(describing: userId!))")
-        print("Este es el Id de la session \(String(describing: sessionId!))")
     }
     
     
-    func LoadData(){
+    func LoadPopularMovies(){
         do{
             GetAllPupularMovie(ResultCompletionHandler: {result, error in
                 if let result = result {
                     if result.Correct!{
-                        self.popularMovies = result.Object as? DataMovie
+                        self.Movies = result.Object as? DataMovie
                         
-                        let json = self.popularMovies
+                        let json = self.Movies
                         print(json as Any)
                         
                         DispatchQueue.main.async {
@@ -61,6 +66,68 @@ class BaseViewController: UIViewController{
         }
     }
     
+    func LoadNowPlayingMovies(){
+        do{
+            GetAllNowPlayingMovie(ResultCompletionHandler: {result, error in
+                if let result = result {
+                    if result.Correct!{
+                        self.Movies = result.Object as? DataMovie
+                        
+                        let json = self.Movies
+                        print(json as Any)
+                        
+                        DispatchQueue.main.async {
+                            self.MoviesCollectionView.reloadData()
+                        }
+                    }
+                }
+            })
+        }catch{
+            print("Ocurrio un error")
+        }
+    }
+    
+    func LoadUpcomingMovies(){
+        do{
+            GetAllUpcomingMovie(ResultCompletionHandler: {result, error in
+                if let result = result {
+                    if result.Correct!{
+                        self.Movies = result.Object as? DataMovie
+                        
+                        let json = self.Movies
+                        print(json as Any)
+                        
+                        DispatchQueue.main.async {
+                            self.MoviesCollectionView.reloadData()
+                        }
+                    }
+                }
+            })
+        }catch{
+            print("Ocurrio un error")
+        }
+    }
+    
+    func LoadTopRatedMovies(){
+        do{
+            GetAllTopRatedMovie(ResultCompletionHandler: {result, error in
+                if let result = result {
+                    if result.Correct!{
+                        self.Movies = result.Object as? DataMovie
+                        
+                        let json = self.Movies
+                        print(json as Any)
+                        
+                        DispatchQueue.main.async {
+                            self.MoviesCollectionView.reloadData()
+                        }
+                    }
+                }
+            })
+        }catch{
+            print("Ocurrio un error")
+        }
+    }
     
     func GetAllPupularMovie(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
         
@@ -105,7 +172,7 @@ class BaseViewController: UIViewController{
         let result = Result()
         
         
-        let url = URL(string:"https://api.themoviedb.org/3/movie/popular?api_key=583dbd688a1811cd5bc8fad24a69b65f&language=en-US&page=1")
+        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=583dbd688a1811cd5bc8fad24a69b65f&language=en-US&page=1")
         
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if let _ = error {
@@ -117,11 +184,11 @@ class BaseViewController: UIViewController{
                httpResponse.statusCode == 200 {
                 
                 do{
-                    let popularMovies = try JSONDecoder().decode(DataMovie.self, from: data)
+                    let nowPlayingMovie = try JSONDecoder().decode(DataMovie.self, from: data)
                     
-                    print(popularMovies)
+                    print(nowPlayingMovie)
                     
-                    result.Object = popularMovies
+                    result.Object = nowPlayingMovie
                     
                     result.Correct = true
                     
@@ -135,6 +202,82 @@ class BaseViewController: UIViewController{
             }
         }.resume()
     }
+    
+    
+    func GetAllUpcomingMovie(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
+        
+        let result = Result()
+        
+        
+        let url = URL(string:"https://api.themoviedb.org/3/movie/upcoming?api_key=583dbd688a1811cd5bc8fad24a69b65f&language=en-US&page=1")
+        
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if let _ = error {
+                print("Error")
+            }
+            
+            if let data = data,
+               let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200 {
+                
+                do{
+                    let upcomingMovie = try JSONDecoder().decode(DataMovie.self, from: data)
+                    
+                    print(upcomingMovie)
+                    
+                    result.Object = upcomingMovie
+                    
+                    result.Correct = true
+                    
+                    ResultCompletionHandler(result, nil)
+                    
+                }catch let parseErr{
+                    print(error)
+                    print("JSON Parsing Error", parseErr)
+                    ResultCompletionHandler(nil, parseErr)
+                }
+            }
+        }.resume()
+    }
+    
+    
+    func GetAllTopRatedMovie(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
+        
+        let result = Result()
+        
+        
+        let url = URL(string:"https://api.themoviedb.org/3/movie/upcoming?api_key=583dbd688a1811cd5bc8fad24a69b65f&language=en-US&page=1")
+        
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if let _ = error {
+                print("Error")
+            }
+            
+            if let data = data,
+               let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200 {
+                
+                do{
+                    let topRatedMovie = try JSONDecoder().decode(DataMovie.self, from: data)
+                    
+                    print(topRatedMovie)
+                    
+                    result.Object = topRatedMovie
+                    
+                    result.Correct = true
+                    
+                    ResultCompletionHandler(result, nil)
+                    
+                }catch let parseErr{
+                    print(error)
+                    print("JSON Parsing Error", parseErr)
+                    ResultCompletionHandler(nil, parseErr)
+                }
+            }
+        }.resume()
+    }
+    
+    
 }
     
 
@@ -144,38 +287,33 @@ extension BaseViewController: UITabBarDelegate {
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 
-        //This method will be called when user changes tab.
-        //item.index(ofAccessibilityElement: 1)
-//        item.title = "Po"
-        //tem.isEnabled = true
-        
-        //tabBar.selectedItem = tabBar.items[item.tag] as? UITabBarItem
-        
-//        tabBar.tag = 0
-//        tabBar.selectedItem = tabBar.items?[item.tag] as? UITabBarItem
-
         if(item.tag == 1) {
-
             // Code for item 1
             print("One")
-
+            LoadPopularMovies()
         }
         else if(item.tag == 2) {
             // Code for item 2
             print("two")
-            LoadData()
+            LoadNowPlayingMovies()
+
 
         } else if(item.tag == 3) {
             // Code for item 3
             print("three")
+            LoadUpcomingMovies()
+
 
         }else if(item.tag == 4) {
             // Code for item 4
             print("four")
-
+            LoadTopRatedMovies()
+            
         }
 
     }
+    
+    
 }
 
 
@@ -188,14 +326,14 @@ extension BaseViewController: UICollectionViewDataSource, UICollectionViewDelega
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return popularMovies?.results.count ?? 0
+        return Movies?.results.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesViewCell", for: indexPath) as! MoviesCollectionViewCell
 
-        let popularMovie = self.popularMovies?.results[indexPath.row]
+        let popularMovie = self.Movies?.results[indexPath.row]
         
 
         cell.NameMovie.text = popularMovie?.original_title
