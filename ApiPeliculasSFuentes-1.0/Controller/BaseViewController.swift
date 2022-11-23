@@ -18,6 +18,8 @@ class BaseViewController: UIViewController{
     @IBOutlet weak var MoviesCollectionView: UICollectionView!
     
     var Movies: DataMovie?
+    var petitonMovie = PetitionMovies()
+
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -335,7 +337,30 @@ extension BaseViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         let popularMovie = self.Movies?.results[indexPath.row]
         
+        var idMovie = self.Movies?.results[indexPath.row].id
 
+        cell.posterTapAction = { cell in
+            print("Hacer metodo insertar ")
+            do{
+                self.petitonMovie.AddMovieFavorite(idMovie!, ResultCompletionHandler: {result, error in
+                    if let result = result {
+                        if result.Correct!{
+//                            self.Movies = result.Object as? DataMovie
+                              print("Pelucula agregada a favoritos")
+//                            let json = self.Movies
+//                            print(json as Any)
+//
+//                            DispatchQueue.main.async {
+//                                self.MoviesCollectionView.reloadData()
+//                            }
+                        }
+                    }
+                })
+            }catch{
+                print("Ocurrio un error")
+            }
+        }
+        
         cell.NameMovie.text = popularMovie?.original_title
         cell.CalfMovie.text = String(describing:("★\((popularMovie!.vote_average * 10).rounded()/10)"))
         cell.DescriptionMovie.text = popularMovie?.overview
@@ -368,13 +393,22 @@ extension BaseViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     }
     
-//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        //print("You selected cell #\(indexPath.item)!")
-//        var popularMovies = self.popularMovies?.results[indexPath.row]
+//    func collectionView(_ collectionView: UICollectionView,
+//                                 canFocusItemAt indexPath: IndexPath) -> Bool {
+//            return false
+//        }
 //
-//        self.performSegue(withIdentifier: "AreaSegues", sender: self)
+//        func collectionView(_ collectionView: UICollectionView,
+//                                 didSelectItemAt indexPath: IndexPath) {
+//            // Now, thanks to the function above, this is disabled
+//            print("From didSelectItemAt indexPath: \(indexPath.item + 1)")
+//        }
 //
-//        return true
+//    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+//            return false
+//        }
+//
+//    func AddFavoriteMovie(_ idMovie: Int){
 //
 //    }
 //
@@ -383,10 +417,7 @@ extension BaseViewController: UICollectionViewDataSource, UICollectionViewDelega
 //
 //            let popularMovie = self.popularMovies?.results[Int]
 //
-//            if let vc = segue.destination as? MoviesCollectionViewCell {
-//                //DepartamentoViewController?.IdArea = self.area.IdArea!
-//                vc.idMovie = self.popularMovie?.results[1].id
-//            }
+//
 //        }
 //    }
 

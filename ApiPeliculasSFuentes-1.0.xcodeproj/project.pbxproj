@@ -103,8 +103,8 @@
 			children = (
 				F781C826292547010083A647 /* ViewController.swift */,
 				F781C84829254B870083A647 /* BaseViewController.swift */,
-				F781C84A292560940083A647 /* MoviesCollectionViewCell.swift */,
 				F7BBD6F32926D73700A0E5FD /* ProfileUserViewController.swift */,
+				F781C84A292560940083A647 /* MoviesCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

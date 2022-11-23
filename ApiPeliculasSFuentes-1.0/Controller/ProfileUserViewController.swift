@@ -17,8 +17,10 @@ class ProfileUserViewController: UIViewController {
     
     var favoritesMovies: DataMovie?
     
+    
     let sessionId = UserDefaults.standard.string(forKey: "SessionId")
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -191,6 +193,8 @@ extension ProfileUserViewController: UICollectionViewDataSource, UICollectionVie
         
         let favoriteMovie = self.favoritesMovies?.results[indexPath.row]
 
+        
+        
         cell.NameMovie.text = favoriteMovie?.original_title
         //cell.DateMovie.text = favoriteMovie?.
         //let populateMovie = (favoriteMovie!.vote_average * 10).rounded()/10
