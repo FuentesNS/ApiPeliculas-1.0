@@ -216,7 +216,6 @@ extension ProfileUserViewController: UICollectionViewDataSource, UICollectionVie
                         }
                     }
                 }
-
             }
         }
         cell.backgroundColor = .green

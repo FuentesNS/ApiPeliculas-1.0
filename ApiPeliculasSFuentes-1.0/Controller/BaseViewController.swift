@@ -286,7 +286,6 @@ class BaseViewController: UIViewController{
 
 extension BaseViewController: UITabBarDelegate {
 
-    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 
         if(item.tag == 1) {

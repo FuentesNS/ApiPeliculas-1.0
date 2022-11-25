@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F737E75D2930064000BAC26E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737E75C2930064000BAC26E /* TestViewController.swift */; };
 		F781C823292547010083A647 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C822292547010083A647 /* AppDelegate.swift */; };
 		F781C825292547010083A647 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C824292547010083A647 /* SceneDelegate.swift */; };
 		F781C827292547010083A647 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C826292547010083A647 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F737E75C2930064000BAC26E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F781C81F292547010083A647 /* ApiPeliculasSFuentes-1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ApiPeliculasSFuentes-1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F781C822292547010083A647 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F781C824292547010083A647 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		F781C816292547010083A647 = {
 			isa = PBXGroup;
 			children = (
+				F737E75C2930064000BAC26E /* TestViewController.swift */,
 				F781C821292547010083A647 /* ApiPeliculasSFuentes-1.0 */,
 				F781C820292547010083A647 /* Products */,
 			);
@@ -200,6 +203,7 @@
 				F781C825292547010083A647 /* SceneDelegate.swift in Sources */,
 				F781C845292548210083A647 /* DataMovie.swift in Sources */,
 				F781C8432925480F0083A647 /* User.swift in Sources */,
+				F737E75D2930064000BAC26E /* TestViewController.swift in Sources */,
 				F781C84C292560940083A647 /* MoviesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
