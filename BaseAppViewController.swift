@@ -1,29 +1,21 @@
 //
-//  TestViewController.swift
+//  BaseAppViewController.swift
 //  ApiPeliculasSFuentes-1.0
 //
-//  Created by MacBookMBA1 on 24/11/22.
+//  Created by MacBookMBA1 on 25/11/22.
 //
 
 import UIKit
 
-class TestViewController: UIViewController {
+class BaseAppViewController: UIViewController {
 
-    @IBOutlet weak var ScrollView: UIScrollView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.ScrollView.canCancelContentTouches = true
-        self.ScrollView.delaysContentTouches = true
-        
-        automaticallyAdjustsScrollViewInsets = false
 
         // Do any additional setup after loading the view.
     }
     
 
-    
     /*
     // MARK: - Navigation
 
