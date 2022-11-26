@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="2520" y="3.5545023696682461"/>
         </scene>
-        <!--Test View Controller-->
+        <!--Base App View Controller-->
         <scene sceneID="YsJ-zf-MvQ">
             <objects>
-                <viewController id="uy8-Jt-wct" customClass="TestViewController" customModule="ApiPeliculasSFuentes_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uy8-Jt-wct" customClass="BaseAppViewController" customModule="ApiPeliculasSFuentes_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O17-sP-iwa">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
