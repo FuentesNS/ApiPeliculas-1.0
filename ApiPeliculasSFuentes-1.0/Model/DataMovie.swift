@@ -133,4 +133,43 @@ class PetitionMovies {
     }
     
     
+    
+    
+}
+
+class PetitionsOfMoviesBaseApp{
+    
+    func GetAllTrendingMovieOfTodey(ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
+        
+        let result = Result()
+        let url = URL(string:"https://api.themoviedb.org/3/trending/movie/day?api_key=583dbd688a1811cd5bc8fad24a69b65f")
+        
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if let _ = error {
+                print("Error")
+            }
+            
+            if let data = data,
+               let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200 {
+                
+                do{
+                    let topRatedMovie = try JSONDecoder().decode(DataMovie.self, from: data)
+                    
+                    print(topRatedMovie)
+                    
+                    result.Object = topRatedMovie
+                    
+                    result.Correct = true
+                    
+                    ResultCompletionHandler(result, nil)
+                    
+                }catch let parseErr{
+                    print(error)
+                    print("JSON Parsing Error", parseErr)
+                    ResultCompletionHandler(nil, parseErr)
+                }
+            }
+        }.resume()
+    }
 }
