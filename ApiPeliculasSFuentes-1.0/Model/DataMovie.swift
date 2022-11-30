@@ -132,9 +132,42 @@ class PetitionMovies {
         task.resume()
     }
     
-    
-    
-    
+    //MARK: Multiple Petitions Of Movies
+    func GetTypePetitionMovie(_ typePetition: String, ResultCompletionHandler: @escaping (Result?, Error?) -> Void?){
+        
+        let result = Result()
+        
+        
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(typePetition)?api_key=583dbd688a1811cd5bc8fad24a69b65f&language=en-US&page=1")
+        
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if let _ = error {
+                print("Error")
+            }
+            
+            if let data = data,
+               let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200 {
+                
+                do{
+                    let popularMovies = try JSONDecoder().decode(DataMovie.self, from: data)
+                    
+                    print(popularMovies)
+                    
+                    result.Object = popularMovies
+                    
+                    result.Correct = true
+                    
+                    ResultCompletionHandler(result, nil)
+                    
+                }catch let parseErr{
+                    print(error)
+                    print("JSON Parsing Error", parseErr)
+                    ResultCompletionHandler(nil, parseErr)
+                }
+            }
+        }.resume()
+    }
 }
 
 class PetitionsOfMoviesBaseApp{

@@ -10,10 +10,10 @@ import UIKit
 class BaseAppViewController: UIViewController {
 
     @IBOutlet weak var ScrollView: UIScrollView!
-    
     @IBOutlet weak var TrendingCollectionView: UICollectionView!
-    
     @IBOutlet weak var WhatsPoularCollectionView: UICollectionView!
+    
+    @IBOutlet weak var TabBarOfBaseApp: UITabBar!
     
     var Movies: DataMovie?
     var PoluarMovies: Popular?
@@ -36,13 +36,27 @@ class BaseAppViewController: UIViewController {
         WhatsPoularCollectionView.dataSource = self
         self.WhatsPoularCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieViewCell")
         
-//        self.view.addSubview(TrendingCollectionView)
-//        self.view.addSubview(WhatsPoularCollectionView)
+        TabBarOfBaseApp.delegate = self
+        
+//        self.TabBarOfBaseApp.tag = 1
+//        self.TabBarOfBaseApp.selectedItem = TabBarOfBaseApp.items?[1]
         
         LoadTrendingMovies()
         LoadWhatsPopularMovies()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.TabBarOfBaseApp.tag = 1
+        self.TabBarOfBaseApp.selectedItem = TabBarOfBaseApp.items?[1]
+        print("Funcion will apper ejecutandose")
+    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.TabBarOfBaseApp.tag = 1
+//        self.TabBarOfBaseApp.selectedItem = TabBarOfBaseApp.items?[1]
+//        print("Funcion did apper ejecutandose")
+//
+//    }
 
     
     /*
@@ -117,13 +131,15 @@ extension BaseAppViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieViewCell", for: indexPath) as! MovieCollectionViewCell
+        
         if collectionView == TrendingCollectionView{
-            let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieViewCell", for: indexPath) as! MovieCollectionViewCell
+            
             
             let popularMovie = self.Movies?.results[indexPath.row]
             
-            cellA.NameMovie.text = popularMovie?.original_title
-            cellA.DateMovie.text = popularMovie?.release_date
+            cell.NameMovie.text = popularMovie?.original_title
+            cell.DateMovie.text = popularMovie?.release_date
 
             
             DispatchQueue.main.async {
@@ -136,22 +152,20 @@ extension BaseAppViewController: UICollectionViewDataSource, UICollectionViewDel
                         if let data = try? Data( contentsOf:url)
                         {
                             DispatchQueue.main.async {
-                                cellA.ImageMovie.image = UIImage( data:data)
-                                //let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
-                                
+                                cell.ImageMovie.image = UIImage( data:data)
                             }
                         }
                     }
                     
                 }
             }
-            return cellA
+            return cell
         } else {
-            let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieViewCell", for: indexPath) as! MovieCollectionViewCell
+            
             
             let popularMovie = self.PoluarMovies?.results[indexPath.row]
             
-            cellB.NameMovie.text = popularMovie?.original_name
+            cell.NameMovie.text = popularMovie?.original_name
             //cellB.DateMovie.text = popularMovie?.release_date
 
             
@@ -165,16 +179,48 @@ extension BaseAppViewController: UICollectionViewDataSource, UICollectionViewDel
                         if let data = try? Data( contentsOf:url)
                         {
                             DispatchQueue.main.async {
-                                cellB.ImageMovie.image = UIImage( data:data)
+                                cell.ImageMovie.image = UIImage( data:data)
                                 //let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
-                                
                             }
                         }
                     }
                     
                 }
             }
-            return cellB
+            return cell
+        }
+    }
+    
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        
+        // Pass the selected object to the new view controller.
+    }
+    
+}
+
+extension BaseAppViewController: UITabBarDelegate {
+
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+
+        if(item.tag == 1) {
+            // Code for item 1
+            print("One")
+            performSegue(withIdentifier: "MoreSegues", sender: self)
+        }
+        else if(item.tag == 2) {
+            // Code for item 2
+            print("two")
+
+
+        } else if(item.tag == 3) {
+            // Code for item 3
+            print("three")
+            performSegue(withIdentifier: "SettingsSegues", sender: self)
         }
     }
     

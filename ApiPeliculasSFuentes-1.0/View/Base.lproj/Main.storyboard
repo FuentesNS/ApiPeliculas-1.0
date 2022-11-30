@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy8-Jt-wct">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy8-Jt-wct">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -304,9 +304,9 @@
                                     <constraint firstAttribute="height" constant="50" id="NXX-3P-b9A"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="qtZ-gX-4yQ"/>
-                                    <tabBarItem title="Home" image="house.fill" catalog="system" id="RaB-Zh-Yns"/>
-                                    <tabBarItem systemItem="more" id="lKA-t8-Dcy"/>
+                                    <tabBarItem tag="1" systemItem="favorites" id="qtZ-gX-4yQ"/>
+                                    <tabBarItem tag="2" title="Home" image="house.fill" catalog="system" id="RaB-Zh-Yns"/>
+                                    <tabBarItem tag="3" title="Settings" image="gearshape.fill" catalog="system" id="lKA-t8-Dcy"/>
                                 </items>
                             </tabBar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24g-wp-wZY">
@@ -555,50 +555,177 @@
                             <constraint firstAttribute="trailing" secondItem="1b0-bX-QSg" secondAttribute="trailing" id="lWU-sR-Cw8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vF0-NX-xxP"/>
                     <connections>
                         <outlet property="ScrollView" destination="1b0-bX-QSg" id="foN-id-9fd"/>
+                        <outlet property="TabBarOfBaseApp" destination="IDz-Bn-5S0" id="YuR-KX-M01"/>
                         <outlet property="TrendingCollectionView" destination="uT4-kX-YIz" id="89C-gZ-Sh2"/>
                         <outlet property="WhatsPoularCollectionView" destination="6Xz-0G-N8n" id="rn2-7l-etf"/>
+                        <segue destination="KQj-oy-P2Q" kind="presentation" identifier="SettingsSegues" id="foW-D0-NUH"/>
+                        <segue destination="MmI-FD-fvU" kind="presentation" identifier="MoreSegues" modalPresentationStyle="fullScreen" id="xRh-UV-VEb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8u-Zz-wC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3521.5384615384614" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="3388" y="-19"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="WDV-sU-ffZ">
+        <!--Title-->
+        <scene sceneID="EFo-IT-Zuj">
             <objects>
-                <viewController id="I53-Yb-KkW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BfT-BS-NHu">
+                <viewController modalPresentationStyle="fullScreen" id="KQj-oy-P2Q" customClass="SettingsViewController" customModule="ApiPeliculasSFuentes_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MAX-xs-a9l">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tp7-CZ-o6q">
-                                <rect key="frame" x="75" y="296" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYp-4x-DNs">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <items>
+                                    <navigationItem title="Settings" id="veh-8d-88F">
+                                        <barButtonItem key="leftBarButtonItem" title="Return" id="iGT-uf-BjR">
+                                            <connections>
+                                                <action selector="ReturnView:" destination="KQj-oy-P2Q" id="ELS-JJ-hqB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="BWp-NG-dcE"/>
+                        <viewLayoutGuide key="safeArea" id="Lv4-Mz-xO7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cYp-4x-DNs" firstAttribute="leading" secondItem="MAX-xs-a9l" secondAttribute="leading" id="7gj-Pp-8Yh"/>
+                            <constraint firstAttribute="trailing" secondItem="cYp-4x-DNs" secondAttribute="trailing" id="HDs-no-Lf0"/>
+                            <constraint firstItem="cYp-4x-DNs" firstAttribute="top" secondItem="Lv4-Mz-xO7" secondAttribute="top" id="Ida-n6-sEP"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="6Qh-ZO-FeO"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u27-bs-8A8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XRp-Ym-kr4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4448" y="19"/>
+            <point key="canvasLocation" x="4348" y="-422"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="Wmx-bQ-Yf0">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="MmI-FD-fvU" customClass="MoreViewController" customModule="ApiPeliculasSFuentes_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P9M-PL-r95">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZj-uM-Msu">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <items>
+                                    <navigationItem title="More" id="x9n-jQ-jn1">
+                                        <barButtonItem key="leftBarButtonItem" title="Return" id="wpu-o7-1jT">
+                                            <connections>
+                                                <action selector="ReturnView:" destination="MmI-FD-fvU" id="mP2-mz-7S7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpn-Yl-ht6">
+                                <rect key="frame" x="16" y="91" width="358" height="100"/>
+                                <subviews>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXf-au-xVg">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="54"/>
+                                        <items>
+                                            <tabBarItem title="Movies" id="sv6-S3-Wxj"/>
+                                            <tabBarItem title="TV Shows" id="v53-3H-D6m"/>
+                                            <tabBarItem title="People" id="LBK-Lp-ZmQ"/>
+                                        </items>
+                                        <color key="tintColor" systemColor="linkColor"/>
+                                        <color key="barTintColor" red="0.18041745579999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </tabBar>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-F6-HJ0">
+                                        <rect key="frame" x="0.0" y="59" width="358" height="32"/>
+                                        <segments>
+                                            <segment title="Popular"/>
+                                            <segment title="Now Playing"/>
+                                            <segment title="Upcoming"/>
+                                            <segment title="Top Rated"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="SegmentOption:" destination="MmI-FD-fvU" eventType="valueChanged" id="OMf-c8-T5K"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bVh-F6-HJ0" secondAttribute="trailing" id="4C7-Se-jAJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iXf-au-xVg" secondAttribute="trailing" id="7CW-0y-ddw"/>
+                                    <constraint firstItem="bVh-F6-HJ0" firstAttribute="top" secondItem="iXf-au-xVg" secondAttribute="bottom" constant="5" id="Dc7-ka-7nJ"/>
+                                    <constraint firstItem="bVh-F6-HJ0" firstAttribute="leading" secondItem="wpn-Yl-ht6" secondAttribute="leading" id="JiM-AP-7fa"/>
+                                    <constraint firstAttribute="bottom" secondItem="bVh-F6-HJ0" secondAttribute="bottom" constant="10" id="bbB-2K-A9Q"/>
+                                    <constraint firstItem="iXf-au-xVg" firstAttribute="leading" secondItem="wpn-Yl-ht6" secondAttribute="leading" id="cxp-ew-y5P"/>
+                                    <constraint firstItem="iXf-au-xVg" firstAttribute="top" secondItem="wpn-Yl-ht6" secondAttribute="top" id="dk6-lv-dXf"/>
+                                    <constraint firstAttribute="height" constant="100" id="wcP-3T-wZL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeZ-sM-Xm9" userLabel="ViewMovies">
+                                <rect key="frame" x="0.0" y="191" width="390" height="570"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n9B-DY-rtg">
+                                        <rect key="frame" x="10" y="10" width="370" height="550"/>
+                                        <color key="backgroundColor" red="0.1450980392" green="0.42745098040000001" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="HOa-MK-Wl8">
+                                            <size key="itemSize" width="180" height="200"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="n9B-DY-rtg" secondAttribute="bottom" constant="10" id="9s5-ML-aqb"/>
+                                    <constraint firstItem="n9B-DY-rtg" firstAttribute="leading" secondItem="QeZ-sM-Xm9" secondAttribute="leading" constant="10" id="ae2-zH-kXj"/>
+                                    <constraint firstItem="n9B-DY-rtg" firstAttribute="top" secondItem="QeZ-sM-Xm9" secondAttribute="top" constant="10" id="hcY-Tm-hwa"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9B-DY-rtg" secondAttribute="trailing" constant="10" id="mwC-9l-sZU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NfA-V9-LmH"/>
+                        <color key="backgroundColor" red="0.1450980392" green="0.42745098040000001" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EZj-uM-Msu" firstAttribute="leading" secondItem="P9M-PL-r95" secondAttribute="leading" id="1SJ-CV-MHQ"/>
+                            <constraint firstItem="wpn-Yl-ht6" firstAttribute="leading" secondItem="P9M-PL-r95" secondAttribute="leadingMargin" id="2lR-rQ-mF9"/>
+                            <constraint firstItem="QeZ-sM-Xm9" firstAttribute="trailing" secondItem="NfA-V9-LmH" secondAttribute="trailing" id="F5t-9E-1ys"/>
+                            <constraint firstItem="QeZ-sM-Xm9" firstAttribute="bottom" secondItem="NfA-V9-LmH" secondAttribute="bottom" id="QNw-Gq-YBl"/>
+                            <constraint firstAttribute="trailing" secondItem="EZj-uM-Msu" secondAttribute="trailing" id="WNY-rr-lu8"/>
+                            <constraint firstItem="QeZ-sM-Xm9" firstAttribute="leading" secondItem="NfA-V9-LmH" secondAttribute="leading" id="YBv-lO-UxY"/>
+                            <constraint firstItem="EZj-uM-Msu" firstAttribute="top" secondItem="NfA-V9-LmH" secondAttribute="top" id="bY7-Kv-H0v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wpn-Yl-ht6" secondAttribute="trailing" id="ihN-LB-iRz"/>
+                            <constraint firstItem="wpn-Yl-ht6" firstAttribute="top" secondItem="EZj-uM-Msu" secondAttribute="bottom" id="q8X-c4-4nQ"/>
+                            <constraint firstItem="QeZ-sM-Xm9" firstAttribute="top" secondItem="wpn-Yl-ht6" secondAttribute="bottom" id="zSp-oh-91u"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="2pi-QK-k8P"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="MovieCollectionView" destination="n9B-DY-rtg" id="vqS-p2-MWH"/>
+                        <outlet property="tabBar" destination="iXf-au-xVg" id="zk9-mn-ip1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hVR-HG-kX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4347.6923076923076" y="285.07109004739334"/>
         </scene>
     </scenes>
     <resources>
         <image name="Logo App" width="73" height="47.666667938232422"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="play.rectangle.on.rectangle" catalog="system" width="128" height="98"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

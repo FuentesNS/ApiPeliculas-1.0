@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3FC137AD293448E70069B6E7 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC137AC293448E70069B6E7 /* Popular.swift */; };
+		F721D26E29352077003AF19D /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721D26D29352077003AF19D /* K.swift */; };
 		F737E75D2930064000BAC26E /* BaseAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737E75C2930064000BAC26E /* BaseAppViewController.swift */; };
+		F76A847529368677000CACFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76A847429368677000CACFE /* SettingsViewController.swift */; };
+		F76A84772936A5B0000CACFE /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76A84762936A5B0000CACFE /* MoreViewController.swift */; };
 		F77876AE2931938C002DFD2A /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77876AC2931938C002DFD2A /* MovieCollectionViewCell.swift */; };
 		F77876AF2931938C002DFD2A /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77876AD2931938C002DFD2A /* MovieCollectionViewCell.xib */; };
 		F781C823292547010083A647 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781C822292547010083A647 /* AppDelegate.swift */; };
@@ -30,7 +33,10 @@
 
 /* Begin PBXFileReference section */
 		3FC137AC293448E70069B6E7 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
+		F721D26D29352077003AF19D /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		F737E75C2930064000BAC26E /* BaseAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAppViewController.swift; sourceTree = "<group>"; };
+		F76A847429368677000CACFE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F76A84762936A5B0000CACFE /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		F77876AC2931938C002DFD2A /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		F77876AD2931938C002DFD2A /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		F781C81F292547010083A647 /* ApiPeliculasSFuentes-1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ApiPeliculasSFuentes-1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +109,7 @@
 				F781C8422925480F0083A647 /* User.swift */,
 				F781C844292548210083A647 /* DataMovie.swift */,
 				3FC137AC293448E70069B6E7 /* Popular.swift */,
+				F721D26D29352077003AF19D /* K.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +122,8 @@
 				F781C84829254B870083A647 /* BaseViewController.swift */,
 				F7BBD6F32926D73700A0E5FD /* ProfileUserViewController.swift */,
 				F781C84A292560940083A647 /* MoviesCollectionViewCell.swift */,
+				F76A847429368677000CACFE /* SettingsViewController.swift */,
+				F76A84762936A5B0000CACFE /* MoreViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +218,9 @@
 				F781C82D292547010083A647 /* ApiPeliculasSFuentes_1_0.xcdatamodeld in Sources */,
 				F781C841292547FA0083A647 /* Token.swift in Sources */,
 				F7BBD6F42926D73700A0E5FD /* ProfileUserViewController.swift in Sources */,
+				F76A84772936A5B0000CACFE /* MoreViewController.swift in Sources */,
+				F721D26E29352077003AF19D /* K.swift in Sources */,
+				F76A847529368677000CACFE /* SettingsViewController.swift in Sources */,
 				F781C823292547010083A647 /* AppDelegate.swift in Sources */,
 				F781C84929254B870083A647 /* BaseViewController.swift in Sources */,
 				F781C825292547010083A647 /* SceneDelegate.swift in Sources */,
