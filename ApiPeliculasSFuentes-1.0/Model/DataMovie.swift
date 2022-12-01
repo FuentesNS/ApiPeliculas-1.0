@@ -34,7 +34,8 @@ struct ResultDataMovie: Codable {
 
 }
 
-struct FavoriteMovie{
+//MARK: Data of media type
+struct FavoriteMovie: Codable{
     let mediaType: String
     let mediaID: Int
     let favorite: Bool
@@ -97,7 +98,7 @@ class PetitionMovies {
                     //completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                     return
                 }
-                print(json)
+                //print(json)
                 
                 
                 if responseHttp.statusCode == 200{
@@ -106,7 +107,7 @@ class PetitionMovies {
                     do{
                         let tasks = try JSONDecoder().decode(ResponseMovie.self, from: data)
                         
-                        print(tasks)
+                        //print(tasks)
                         
                         result.Object = tasks
                         
@@ -152,7 +153,7 @@ class PetitionMovies {
                 do{
                     let popularMovies = try JSONDecoder().decode(DataMovie.self, from: data)
                     
-                    print(popularMovies)
+                    //print(popularMovies)
                     
                     result.Object = popularMovies
                     
@@ -189,7 +190,7 @@ class PetitionsOfMoviesBaseApp{
                 do{
                     let topRatedMovie = try JSONDecoder().decode(DataMovie.self, from: data)
                     
-                    print(topRatedMovie)
+                    //print(topRatedMovie)
                     
                     result.Object = topRatedMovie
                     
@@ -206,3 +207,4 @@ class PetitionsOfMoviesBaseApp{
         }.resume()
     }
 }
+

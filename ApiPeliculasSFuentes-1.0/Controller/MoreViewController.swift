@@ -12,6 +12,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var MovieCollectionView: UICollectionView!
     
+    var IdMovie: Int = 0
     
     var Movies: DataMovie?
     var typePetition = PetitionMovies()
@@ -127,17 +128,20 @@ extension MoreViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        print("You selected cell #\(indexPath.item)!")
-        var idMovie = self.Movies?.results[indexPath.row].id
-        print(idMovie)
+        
+        self.IdMovie = (self.Movies?.results[indexPath.row].id)!
+        
+        
+        self.performSegue(withIdentifier: "DescriptionMovie", sender: self)
+        
         return false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ""{
+        if segue.identifier == "DescriptionMovie"{
             
-//            let DepartamentoViewController = segue.destination as?  DepartamentoCollectionViewController
-//            DepartamentoViewController?.IdArea = self.area.IdArea!
+            let descriptionMovieViewController = segue.destination as?  DescriptionMovieViewController
+            descriptionMovieViewController?.IdMovie = self.IdMovie
         }
     }
 }

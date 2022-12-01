@@ -180,7 +180,6 @@ extension BaseAppViewController: UICollectionViewDataSource, UICollectionViewDel
                         {
                             DispatchQueue.main.async {
                                 cell.ImageMovie.image = UIImage( data:data)
-                                //let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
                             }
                         }
                     }
